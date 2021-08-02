@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>ScreenCast_Project</title>
+</head>
+<body>
+    <h1>Project Screen Capture</h1>
+    <div id="btnCon">
+        <button id="start" class="btn">Start</button>
+        <button id="stop" class="btn">Stop</button>
+        <!--<button id="start" class="btn" autoplay>▶️ autoplay</button>-->
+    </div>
+    <video id="video" autoplay></video>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+    $(document).on('click','button',function(){
+        $(this).addClass('active').siblings().removeClass('active')
+    })
+
+    const Vid = document.getElementById('video')
+    const Start = document.getElementById('start')
+    const Stop = document.getElementById('stop')
+
+    //Sumber :https://developer.mozilla.org/en-US/docs/Web/API/Screen_Capture_API
+    let displayMediaOptions = {
+        video:{
+            cursor:'always'
+        },
+        audio:false
+    }
+
+    // fungsi untuk mengaktifkan dan mematikan Rekaman
+    Start.addEventListener("click",function(e){
+        startCapture()
+    })
+    Stop.addEventListener("click",function(e){
+        stopCapture()
+    })
+
+    async function startCapture() {
+      
+        //Layar
+        try {
+            Vid.srcObject = await navigator.mediaDevices.getDisplayMedia(displayMediaOptions);
+        } catch(err) {
+            console.error("Error: " + err);
+        }
+        //Webcam
+        //try {
+        //  Vid.srcObject = await navigator.mediaDevices.getUserMedia(displayMediaOptions);
+        //} catch(err) {
+        //  console.error("Error: " + err);
+        //}
+    }
+
+    function stopCapture(e){
+        let tracks = Vid.srcObject.getTracks()
+
+        tracks.forEach(track => track.stop())
+
+        Vid.srcObject = null
+    }
+    </script>
+</body>
+</html>

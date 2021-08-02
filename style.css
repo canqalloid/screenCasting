@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+:root{
+    font-family: 'Noto Sans', sans-serif;
+}
+
+h1 {
+    font-weight: 600;
+    text-align: center;
+}
+
+
+#btnCon{
+    margin: auto;
+    text-align: center;
+}
+
+.btn {
+    padding: 2px;
+    width: 60px;
+    background-color: #eee;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+    border: 0;
+    border-radius: 10px;
+    font-size: large;
+    margin-right: 2px;
+    text-align: center;
+    transition: all 0.1s ease-in-out; 
+}
+
+.active, .btn:hover {
+    width: 100px;
+    background-color: greenyellow;
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+
